@@ -13,6 +13,7 @@ public static class PersistenceServiceExtensions
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services
         , IConfiguration configuration )
     {
+        services.AddScoped<IBasketRepository, BasketRepository>();
         services.AddSingleton<IConnectionMultiplexer>(cfg =>
         {
             return ConnectionMultiplexer.Connect(configuration.GetConnectionString("RedisConnection")!);
